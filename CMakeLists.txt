@@ -6,6 +6,7 @@ file(READ data/client/config/Version ECCE_VERSION)
 string(STRIP ${ECCE_VERSION} ECCE_VERSION)
 message("Generating Files for ECCE ${ECCE_VERSION}")
 
+
 # CMake Utilities
 include(ExternalProject)
 
@@ -37,7 +38,11 @@ add_compile_options(-DINSTALL -pipe)
 # Setup C build environment
 include_directories(include)
 
+set(THIRD_PARTY_INSTALL_DIR ${CMAKE_BINARY_DIR}/3rdparty)
+
 # Include Specific Rules
+include(${CMAKE_INC}/xerces.cmake)
+include(${CMAKE_INC}/wxpython.cmake)
 include(${CMAKE_INC}/3rdparty.cmake)
 include(${CMAKE_INC}/lib.cmake)
 include(${CMAKE_INC}/bin.cmake)
